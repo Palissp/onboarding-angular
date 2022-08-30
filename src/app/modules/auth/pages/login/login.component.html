@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="card">
+    <div class="header">
+      <span style="font-weight: bold; font-size: 2rem"> Iniciar sesi&oacute;n </span>
+      <hr>
+    </div>
+    <form class="form-group" [formGroup]="loginForm">
+      <div class="input-group">
+        <pichincha-input id-element="email" label="Correo Electrónico" placeholder="Ej. name@example.com"
+                         appInputAccessor
+                         formControlName="email"
+                         [errorHelper]="'Correo es requerido.'"
+                         [fullWidth]="true"></pichincha-input>
+      </div>
+      <div class="input-group">
+        <pichincha-input id-element="password" label="Contraseña" placeholder="Contraseña"
+                         appInputAccessor
+                         formControlName="password"
+                         [errorHelper]="getErrorMessage('password')"
+                         [type]="'password'"
+                         [fullWidth]="true"></pichincha-input>
+      </div>
+    </form>
+    <div class="action-buttons">
+      <a class="link">Registrarse aquí</a>
+      <pichincha-button
+        (click)="onSubmit()"
+        size="large" id="idButton" color="primary">
+        Iniciar Sesi&oacute;n
+      </pichincha-button>
+    </div>
+  </div>
+</div>
