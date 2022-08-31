@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
   }
 
   public onSubmit(): void {
-    if (!this.loginForm.valid) {
+    if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
       this.loginForm.markAsDirty();
       this.toastService.show({
@@ -38,31 +38,43 @@ export class LoginComponent implements OnInit {
       });
       return
     }
-
+    let {email, password} = this.loginForm.getRawValue();
     //TODO: Mover esta validación al componente de registro
-    this._authService.usernameExists(this.loginForm.get('email')?.value).subscribe(
-      {
-        next: (response) => {
-          if(response.exists) {
-            this.toastService.show({
-              text: `El usuario ya existe.`,
-              type: 'warning',
-            });
-          } else {
-            this.toastService.show({
-              text: `El usuario no existe.`,
-              type: 'warning',
-            });
-          }
-        },
-        error: (error) => {
-          this.toastService.show({
-            text: `Ocurrió un error al intentar validar el usuario.` + error,
-            type: 'warning',
-          });
-        }
+    // this._authService.usernameExists(this.loginForm.get('email')?.value).subscribe(
+    //   {
+    //     next: (response) => {
+    //       if(response.exists) {
+    //         this.toastService.show({
+    //           text: `El usuario ya existe.`,
+    //           type: 'warning',
+    //         });
+    //       } else {
+    //         this.toastService.show({
+    //           text: `El usuario no existe.`,
+    //           type: 'warning',
+    //         });
+    //       }
+    //     },
+    //     error: (error) => {
+    //       this.toastService.show({
+    //         text: `Ocurrió un error al intentar validar el usuario.` + error,
+    //         type: 'warning',
+    //       });
+    //     }
+    //   }
+    // )
+    this._authService.login(email, password).subscribe({
+      next: (response) => {
+
+      },
+      error: (error) => {
+
       }
-    )
+    })
+  }
+
+  public get email(): any {
+    return this.loginForm.get('email');
   }
 
   public getErrorMessage(formControlName: string): string {
@@ -71,7 +83,7 @@ export class LoginComponent implements OnInit {
     }
     let errorMessage = '';
     if (this.loginForm.get(formControlName)?.hasError('required')) {
-      return 'Este campo es obligatorio.';
+      return formControlName + 'es requerido';
     }
     if (this.loginForm.get(formControlName)?.hasError('hasUpperCase')) {
       errorMessage += 'Debe contener almenos una letra mayúscula.\n';

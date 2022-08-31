@@ -9,6 +9,7 @@ export function hasUpperCaseValidator(): ValidatorFn {
       return null;
     }
     const hasUpperCase = /[A-Z]+/.test(value);
+    //TODO: Verificar estructura del return de ValidationErrors
     return !hasUpperCase ? {hasUpperCase: true} : null;
   }
 }

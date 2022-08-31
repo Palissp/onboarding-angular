@@ -16,9 +16,9 @@
         <pichincha-input id-element="password" label="Contraseña" placeholder="Contraseña"
                          appInputAccessor
                          formControlName="password"
-                         [errorHelper]="getErrorMessage('password')"
                          [type]="'password'"
                          [fullWidth]="true"></pichincha-input>
+        <span [innerHTML]="getErrorMessage('password')"></span>
       </div>
     </form>
     <div class="action-buttons">
