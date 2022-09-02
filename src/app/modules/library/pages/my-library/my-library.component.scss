@@ -1,0 +1,18 @@
+.main-container{
+  padding: 80px 80px;
+}
+.header-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.books-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 8px;
+}
+.select-bar{
+  width: 150px;
+  height: 40px;
+  align-self: center;
+}

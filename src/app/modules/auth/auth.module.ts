@@ -10,6 +10,7 @@ import {AppModule} from "../../app.module";
 import {ReactiveFormsModule} from "@angular/forms";
 import {InputValueAcessorDirective} from "../shared/directives/input-value-accessor.directive";
 import {HttpClientModule} from "@angular/common/http";
+import {SharedModule} from "../shared/shared.module";
 
 
 
@@ -20,12 +21,13 @@ import {HttpClientModule} from "@angular/common/http";
     RegisterUserComponent,
     InputValueAcessorDirective
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    ReactiveFormsModule,
-    HttpClientModule
-  ],
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        SharedModule
+    ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AuthModule { }

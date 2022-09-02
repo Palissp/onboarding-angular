@@ -1,0 +1,10 @@
+<div class="navbar">
+  <div class="nav-options">
+    <a routerLink="/admin/library" routerLinkActive="active">Biblioteca</a>
+    <a routerLink="/admin/my-library" routerLinkActive="active">Mis libros</a>
+  </div>
+  <div class="user-info">
+    <a>{{userInfo.username || 'Error'}}</a>
+  </div>
+</div>
+<router-outlet></router-outlet>

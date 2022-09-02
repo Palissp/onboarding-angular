@@ -1,0 +1,19 @@
+.book-container {
+  width: 200px;
+  min-width: 200px;
+  height: fit-content;
+  box-shadow: -2px 6px 15px -1px rgba(0,0,0,0.35);
+  -webkit-box-shadow: -2px 6px 15px -1px rgba(0,0,0,0.35);
+  -moz-box-shadow: -2px 6px 15px -1px rgba(0,0,0,0.35);
+  border-radius: 10px;
+}
+.img-book{
+  max-width:100%;
+}
+
+.book-container:hover{
+  transform: scale(1.05);
+  transition: all 0.3s ease-in-out;
+  opacity: 0.5;
+  cursor: pointer;
+}

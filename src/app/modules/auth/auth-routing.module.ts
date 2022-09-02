@@ -5,7 +5,7 @@ import {RegisterUserComponent} from "./pages/register-user/register-user.compone
 
 const routes: Routes = [
   {
-    path: '**',
+    path: '',
     pathMatch: 'full',
     redirectTo: 'login',
   },

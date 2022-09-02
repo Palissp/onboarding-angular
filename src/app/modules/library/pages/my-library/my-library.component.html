@@ -1,0 +1,24 @@
+<div class="main-container">
+  <div class="header-bar">
+    <span class="header-title">Tus libros</span>
+    <pichincha-button
+      (click)="createBook()"
+      size="large" id="idButton" color="secondary">
+      Agregar Libro
+    </pichincha-button>
+  </div>
+  <div class="header-bar">
+    <pichincha-input id-element="SearchInput" placeholder="Ej. Angular, React"
+                     appInputAccessor
+                     (ikeyup)="filterBooks($event)"
+                     [type]="'text'"
+                     [fullWidth]="true"></pichincha-input>
+    <select class="select-bar">
+      <option value="1">Angular</option>
+      <option value="2">React</option>
+    </select>
+  </div>
+  <div class="books-container">
+    <app-book-card *ngFor="let book of arrayOfBooksTemp" [book]="book"></app-book-card>
+  </div>
+</div>

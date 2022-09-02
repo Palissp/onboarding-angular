@@ -9,8 +9,8 @@
         <pichincha-input id-element="email" label="Correo Electrónico" placeholder="Ej. name@example.com"
                          appInputAccessor
                          formControlName="email"
-                         [errorHelper]="'Correo es requerido.'"
                          [fullWidth]="true"></pichincha-input>
+        <span [innerHTML]="getErrorMessage('email')" *ngIf="loginForm.get('email')?.touched" style="color: #DA1E07; font-size: 0.9rem"></span>
       </div>
       <div class="input-group">
         <pichincha-input id-element="password" label="Contraseña" placeholder="Contraseña"
@@ -18,11 +18,11 @@
                          formControlName="password"
                          [type]="'password'"
                          [fullWidth]="true"></pichincha-input>
-        <span [innerHTML]="getErrorMessage('password')"></span>
+        <span [innerHTML]="getErrorMessage('password')" *ngIf="loginForm.get('password')?.touched" style="color: #DA1E07; font-size: 0.9rem"></span>
       </div>
     </form>
     <div class="action-buttons">
-      <a class="link">Registrarse aquí</a>
+      <a class="link" routerLink="/register">Registrarse aquí</a>
       <pichincha-button
         (click)="onSubmit()"
         size="large" id="idButton" color="primary">
@@ -31,3 +31,5 @@
     </div>
   </div>
 </div>
+
+<app-blockpage *ngIf="blockPage"></app-blockpage>

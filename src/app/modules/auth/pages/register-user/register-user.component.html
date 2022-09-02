@@ -1,1 +1,87 @@
-<p>register-user works!</p>
+<div class="container">
+  <div class="card">
+    <div class="header">
+      <span class="header-title"> Registrarse </span>
+      <hr>
+    </div>
+    <form class="form-group" [formGroup]="registerForm">
+      <div class="input-group">
+        <pichincha-input id-element="nickname" label="Nombre de usuario" placeholder="Ej. makoto"
+                         appInputAccessor
+                         formControlName="nickname"
+                         [fullWidth]="true"></pichincha-input>
+        <span [innerHTML]="getErrorMessage('nickname')" *ngIf="registerForm.get('nickname')?.touched"
+              style="color: #DA1E07; font-size: 0.9rem"></span>
+        <span *ngIf="registerForm.get('nickname')?.touched && registerForm.get('nickname')?.hasError('required')"
+              style="color: #DA1E07; font-size: 0.9rem"> Nombre de usuario es requerido</span>
+        <span
+          *ngIf="registerForm.get('nickname')?.touched && registerForm.get('nickname')?.hasError('usernameAlreadyExists')"
+          style="color: #DA1E07; font-size: 0.9rem"> El nombre de usuario ya existe</span>
+      </div>
+      <div class="input-group">
+        <pichincha-input id-element="email" label="Correo Electrónico" placeholder="Ej. name@example.com"
+                         appInputAccessor
+                         formControlName="email"
+                         [fullWidth]="true"></pichincha-input>
+        <span [innerHTML]="getErrorMessage('email')" *ngIf="registerForm.get('email')?.touched"
+              style="color: #DA1E07; font-size: 0.9rem"></span>
+        <span *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')"
+              style="color: #DA1E07; font-size: 0.9rem"> Correo es requerido</span>
+        <span *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('email')"
+              style="color: #DA1E07; font-size: 0.9rem"> El correo es inv&aacute;lido</span>
+        <span
+          *ngIf="registerForm.get('email')?.touched && registerForm.get('email')?.hasError('emailAlreadyExists')"
+          style="color: #DA1E07; font-size: 0.9rem"> El email ya se encuentra registrado </span>
+      </div>
+      <div class="input-group">
+        <pichincha-input id-element="password" label="Contraseña" placeholder="*****"
+                         appInputAccessor
+                         formControlName="password"
+                         [type]="'password'"
+                         [fullWidth]="true"></pichincha-input>
+        <span [innerHTML]="getErrorMessage('password')" *ngIf="registerForm.get('password')?.touched"
+              style="color: #DA1E07; font-size: 0.9rem"></span>
+        <span *ngIf="registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')"
+              style="color: #DA1E07; font-size: 0.9rem"> Contraseña requerida</span>
+      </div>
+      <div class="input-group">
+        <pichincha-input id-element="confirmPassword" label="Confirmar contraseña" placeholder="*****"
+                         appInputAccessor
+                         formControlName="confirmPassword"
+                         [type]="'password'"
+                         [fullWidth]="true"></pichincha-input>
+        <span
+          *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.hasError('notSame')"
+          style="color: #DA1E07; font-size: 0.9rem"> Contraseñas no coinciden</span>
+        <span
+          *ngIf="registerForm.get('confirmPassword')?.touched && registerForm.get('confirmPassword')?.hasError('required')"
+          style="color: #DA1E07; font-size: 0.9rem">Debe confirmar su contraseña</span>
+      </div>
+      <div class="input-group">
+        <span class="header-title">Categorías</span>
+        <input type="text" placeholder="Buscar..." (keyup)="filterCategory($event)">
+        <div class="checkbox-container" *ngIf="categoryList.length > 0">
+          <div class="checkbox-input" *ngFor="let category of categoryListTemp">
+            <input type="checkbox" [value]="category.id" (change)="onCheckChange($event)" [checked]="category.checked"
+                   #checkbox>
+            <label (click)="checkbox.click()">{{category.description}}</label>
+          </div>
+        </div>
+        <span *ngIf="categoryList.length == 0"
+              style="color: #DA1E07; font-size: 0.9rem">No hay categorías disponibles</span>
+        <span *ngIf="minimumCheck"
+              style="color: #DA1E07; font-size: 0.9rem"> Debe elegir almenos 3 categor&iacute;as</span>
+      </div>
+    </form>
+    <div class="action-buttons">
+      <a class="link" routerLink="/login">Iniciar Sesi&oacute;n aquí</a>
+      <pichincha-button
+        (click)="onSubmit()"
+        size="large" id="idButton" color="primary">
+        Registrar
+      </pichincha-button>
+    </div>
+  </div>
+</div>
+
+<app-blockpage *ngIf="blockPage"></app-blockpage>
